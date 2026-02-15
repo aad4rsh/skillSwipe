@@ -19,7 +19,7 @@ var app = builder.Build();
 // Development mode ma chaina bhane error handler use garne
 {
     app.UseExceptionHandler("/Home/Error");
-    
+
     app.UseHsts();
 }
 
