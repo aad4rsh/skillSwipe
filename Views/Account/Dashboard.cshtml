@@ -1,0 +1,114 @@
+
+@model skillSewa.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="test-container">
+    <h1 class="display-4 mb-4">Dashboard</h1>
+
+    @if (Model.IsAdmin)
+    {
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card bg-dark text-white">
+                    <div class="card-header">
+                        Admin Overview
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-6">
+                                <h3>@Model.TotalUsers</h3>
+                                <p>Total Users</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>@Model.TotalSkills</h3>
+                                <p>Total Skills</p>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a asp-controller="User" asp-action="Index" class="btn btn-light">Manage Users</a>
+                            <a asp-controller="Skill" asp-action="Index" class="btn btn-light">Manage Skills</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <!-- Stats Cards -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-primary">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-primary">Skills I Teach</h5>
+                    <h2 class="display-3">@Model.TotalSkillsOffered</h2>
+                    <p class="card-text">You are offering to teach these skills.</p>
+                </div>
+                <div class="card-footer bg-transparent border-primary">
+                    <a asp-controller="UserSkill" asp-action="Create" class="btn btn-primary w-100">Add New Skill</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-success">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-success">Skills I Learn</h5>
+                    <h2 class="display-3">@Model.TotalSkillsLearned</h2>
+                    <p class="card-text">You are looking to learn these skills.</p>
+                </div>
+                <div class="card-footer bg-transparent border-success">
+                    <a asp-controller="UserSkill" asp-action="Create" class="btn btn-success w-100">Add Learning Goal</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-info">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-info">Potential Matches</h5>
+                    <h2 class="display-3">@Model.PotentialMatches</h2>
+                    <p class="card-text">People teaching what you want to learn.</p>
+                </div>
+                <div class="card-footer bg-transparent border-info">
+                    <a href="#" class="btn btn-info w-100 text-white">View Matches</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.RecentMatches != null && Model.RecentMatches.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3>Recent Matches</h3>
+                <div class="list-group">
+                    @foreach (var match in Model.RecentMatches)
+                    {
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@match.User.Name teaches @match.Skill.SkillName</h5>
+                                <small>View Profile</small>
+                            </div>
+                            <p class="mb-1">Contact: @match.User.Email</p>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.TotalSkillsLearned > 0)
+    {
+        <div class="alert alert-info mt-4">
+            No matches found yet! Why not browse available skills?
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning mt-4">
+            Start by adding skills you want to learn to see matches!
+        </div>
+    }
+</div>

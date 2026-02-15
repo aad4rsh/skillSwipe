@@ -129,6 +129,55 @@ namespace skillSewa.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // Dashboard action
+        [Authorize]
+        public async Task<IActionResult> Dashboard()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                return RedirectToAction("Login");
+            }
+
+            int userId = int.Parse(userIdString);
+            var isAdmin = User.IsInRole("Admin");
+
+            var model = new DashboardViewModel
+            {
+                IsAdmin = isAdmin,
+                TotalSkillsOffered = await _context.UserSkill.CountAsync(us => us.UserId == userId && us.CanTeach),
+                TotalSkillsLearned = await _context.UserSkill.CountAsync(us => us.UserId == userId && us.WantToLearn)
+            };
+
+            // Calculate potential matches: Find users who teach what I want to learn
+            var myLearningSkills = await _context.UserSkill
+                .Where(us => us.UserId == userId && us.WantToLearn)
+                .Select(us => us.SkillId)
+                .ToListAsync();
+
+            if (myLearningSkills.Any())
+            {
+                model.PotentialMatches = await _context.UserSkill
+                    .CountAsync(us => us.UserId != userId && us.CanTeach && myLearningSkills.Contains(us.SkillId));
+
+                model.RecentMatches = await _context.UserSkill
+                    .Include(us => us.User)
+                    .Include(us => us.Skill)
+                    .Where(us => us.UserId != userId && us.CanTeach && myLearningSkills.Contains(us.SkillId))
+                    .OrderByDescending(us => us.Id)
+                    .Take(5)
+                    .ToListAsync();
+            }
+
+            if (isAdmin)
+            {
+                model.TotalUsers = await _context.User.CountAsync();
+                model.TotalSkills = await _context.Skill.CountAsync();
+            }
+
+            return View(model);
+        }
+
         // Access Denied page
         public IActionResult AccessDenied()
         {
