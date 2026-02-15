@@ -29,7 +29,7 @@ This document outlines the steps to implement Authentication, Authorization, and
 ## Milestone 2: Configuration in Program.cs
 **Goal:** Enable Authentication and Authorization services in the application pipeline.
 
-- [ ] **Add Authentication Service**
+- [x] **Add Authentication Service**
   - Open `Program.cs`.
   - Add the following code **before** `builder.Build()`:
     ```csharp
@@ -45,7 +45,7 @@ This document outlines the steps to implement Authentication, Authorization, and
         });
     ```
 
-- [ ] **Enable Middleware**
+- [x] **Enable Middleware**
   - Ensure the middleware is called in the correct order **after** `app.Build()` and **before** `app.MapControllerRoute...`:
     ```csharp
     app.UseAuthentication(); // Add this line

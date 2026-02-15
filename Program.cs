@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using skillSewa.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 // Web application builder start gareko
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,14 @@ builder.Services.AddControllersWithViews();
 // Database context add gareko (SQL Server use garne)
 builder.Services.AddDbContext<SkillSwapContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SkillSwapContext") ?? throw new InvalidOperationException("Connection string 'SkillSwapContext' not found.")));
+
+// Authentication service add gareko
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
 
 // App build gareko
 var app = builder.Build();
@@ -27,7 +36,8 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseRouting();
 
-// Authorization use gareko
+// Authorization ra Authentication enable gareko
+app.UseAuthentication();
 app.UseAuthorization();
 
 // Static file haru serve garna (css, js, images)
