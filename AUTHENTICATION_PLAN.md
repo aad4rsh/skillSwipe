@@ -129,11 +129,11 @@ This document outlines the steps to implement Authentication, Authorization, and
 ## Milestone 6: Authorization & Protection
 **Goal:** Protect specific pages based on login status and roles.
 
-- [ ] **Protect Controllers**
+- [x] **Protect Controllers**
   - Add `[Authorize]` attribute to controllers/actions that require login (e.g., `SkillsController`).
 
-- [ ] **Role-Based Protection**
+- [x] **Role-Based Protection**
   - Add `[Authorize(Roles = "Admin")]` to actions that only admins should access (e.g., `UserController` which manages users).
 
-- [ ] **Handle Access Denied**
+- [x] **Handle Access Denied**
   - Create an `AccessDenied` view in `Views/Account` to show a friendly error message when a user tries to access an unauthorized page.
