@@ -113,16 +113,16 @@ This document outlines the steps to implement Authentication, Authorization, and
 ## Milestone 5: Create Views
 **Goal:** Create the user interface for authentication.
 
-- [ ] **Create Views Folder**
+- [x] **Create Views Folder**
   - Create `Views/Account` folder.
 
-- [ ] **Create `Register.cshtml`**
+- [x] **Create `Register.cshtml`**
   - Create a form that posts to `Account/Register` with Name, Email, Password, ConfirmPassword fields.
 
-- [ ] **Create `Login.cshtml`**
+- [x] **Create `Login.cshtml`**
   - Create a form that posts to `Account/Login` with Email and Password fields.
 
-- [ ] **Update `_Layout.cshtml`**
+- [x] **Update `_Layout.cshtml`**
   - Add logic to show "Login/Register" links if user is not authenticated (`!User.Identity.IsAuthenticated`).
   - Show "Logout" and "Hello [Name]" if user is authenticated.
 
