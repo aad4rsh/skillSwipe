@@ -55,10 +55,10 @@ This document outlines the steps to implement Authentication, Authorization, and
 ## Milestone 3: Create ViewModels
 **Goal:** Create separate models for Login and Registration forms to keep the domain model clean.
 
-- [ ] **Create `ViewModels` Folder**
+- [x] **Create `ViewModels` Folder**
   - Create a new folder named `ViewModels` inside the project.
 
-- [ ] **Create `RegisterViewModel.cs`**
+- [x] **Create `RegisterViewModel.cs`**
   ```csharp
   namespace skillSewa.ViewModels;
   
@@ -71,7 +71,7 @@ This document outlines the steps to implement Authentication, Authorization, and
   }
   ```
 
-- [ ] **Create `LoginViewModel.cs`**
+- [x] **Create `LoginViewModel.cs`**
   ```csharp
   namespace skillSewa.ViewModels;
   
