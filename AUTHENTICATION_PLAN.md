@@ -85,10 +85,10 @@ This document outlines the steps to implement Authentication, Authorization, and
 ## Milestone 4: Implement Account Controller
 **Goal:** Handle Login, Register, and Logout logic.
 
-- [ ] **Create `AccountController`**
+- [x] **Create `AccountController`**
   - Create a new controller `Controllers/AccountController.cs`.
 
-- [ ] **Implement Register Action**
+- [x] **Implement Register Action**
   - **GET**: Return the Register view.
   - **POST**: 
     1. Check if email already exists.
@@ -97,7 +97,7 @@ This document outlines the steps to implement Authentication, Authorization, and
     4. Save to database.
     5. Redirect to Login.
 
-- [ ] **Implement Login Action**
+- [x] **Implement Login Action**
   - **GET**: Return the Login view.
   - **POST**:
     1. Find user by email.
@@ -106,7 +106,7 @@ This document outlines the steps to implement Authentication, Authorization, and
     4. Call `HttpContext.SignInAsync(...)`.
     5. Redirect to Home.
 
-- [ ] **Implement Logout Action**
+- [x] **Implement Logout Action**
   - Call `HttpContext.SignOutAsync()`.
   - Redirect to Home or Login.
 
