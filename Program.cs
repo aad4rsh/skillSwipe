@@ -24,6 +24,16 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 // App build gareko
 var app = builder.Build();
 
+// Seed the database
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<SkillSwapContext>();
+    // Ensure database is created (optional, depends on migration strategy)
+    // context.Database.EnsureCreated(); 
+    DbInitializer.Initialize(context);
+}
+
 // Configure the HTTP request pipeline.
 // Development mode ma chaina bhane error handler use garne
 {

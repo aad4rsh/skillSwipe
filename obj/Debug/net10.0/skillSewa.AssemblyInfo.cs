@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("skillSewa")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2af936c13ef8873f89177ef060015fc0c4b496e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c60699c1db3199033cc66509b564e5ae9e291aea")]
 [assembly: System.Reflection.AssemblyProductAttribute("skillSewa")]
 [assembly: System.Reflection.AssemblyTitleAttribute("skillSewa")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
